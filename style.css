@@ -241,6 +241,7 @@ a {
 /* Responsive Display Show/Hide */
 .hidden { display: none; }
 .block { display: block; }
+.pointer-events-none { pointer-events: none !important; }
 
 /* Grid Responsive definitions */
 @media (min-width: 640px) {
