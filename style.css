@@ -388,6 +388,7 @@ a {
 
 /* Interactive Form Inputs */
 .form-input {
+  font-size: 1rem !important;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 .form-input:focus {
@@ -397,15 +398,39 @@ a {
   box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.15);
 }
 
-.relative .form-input:focus ~ .form-label,
-.relative .form-input:not(:placeholder-shown) ~ .form-label {
-  transform: translateY(-1.35rem) scale(0.85);
-  padding: 0 0.25rem;
-  background-color: var(--bg-primary);
-  color: var(--color-primary);
+/* Floating Form Labels */
+.form-label {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  font-size: 1rem !important;
+  z-index: 10;
 }
+
+/* Handle textarea differently because of its larger height */
+textarea.form-input ~ .form-label {
+  top: 1.25rem;
+  transform: none;
+}
+
+/* Floating states */
+.relative .form-input:focus ~ .form-label,
+.relative .form-input:not(:placeholder-shown) ~ .form-label,
+.relative .form-input:-webkit-autofill ~ .form-label {
+  top: 0;
+  transform: translateY(-50%) scale(0.8);
+  background-color: var(--bg-primary);
+  padding: 0 0.25rem;
+  color: var(--color-primary);
+  font-size: 0.85rem !important;
+}
+
 .dark .relative .form-input:focus ~ .form-label,
-.dark .relative .form-input:not(:placeholder-shown) ~ .form-label {
+.dark .relative .form-input:not(:placeholder-shown) ~ .form-label,
+.dark .relative .form-input:-webkit-autofill ~ .form-label {
   color: var(--color-secondary);
 }
 

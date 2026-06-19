@@ -375,25 +375,66 @@ document.addEventListener('DOMContentLoaded', () => {
       const subject = document.getElementById('form-subject').value;
       const message = document.getElementById('form-message').value;
 
-      console.log("Contact submission received:", { name, email, subject, message });
+      // Select submit button and store original text
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.innerHTML;
 
-      // Animate submit button off and trigger alert overlay
+      // Update loading status
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Sending Message... <i data-lucide="loader" class="w-4 h-4 animate-spin inline-block align-middle ml-1"></i>';
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
       contactForm.classList.add('opacity-50', 'pointer-events-none');
-      
-      setTimeout(() => {
+
+      // Send details to FormSubmit.co AJAX API
+      fetch("https://formsubmit.co/ajax/midhunesh6@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          subject: subject,
+          message: message
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Could not submit form');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log("Contact form successfully submitted:", data);
         contactForm.reset();
         contactForm.classList.add('hidden');
         contactForm.classList.remove('opacity-50', 'pointer-events-none');
-        
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+
         if (formSuccessAlert) {
           formSuccessAlert.classList.remove('hidden');
-          // Automatically hide alert and show clean form after 6 seconds
+          // Automatically hide success alert and restore form after 8 seconds
           setTimeout(() => {
             formSuccessAlert.classList.add('hidden');
             contactForm.classList.remove('hidden');
-          }, 6000);
+          }, 8000);
         }
-      }, 800);
+      })
+      .catch(error => {
+        console.error("Submission failed:", error);
+        alert("Oops! There was a problem submitting your message. Please verify your connection or email me directly at midhunesh6@gmail.com.");
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+        contactForm.classList.remove('opacity-50', 'pointer-events-none');
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+      });
     });
   }
 
