@@ -476,6 +476,103 @@ a {
 }
 
 /* ==========================================================================
+   PROFILE PHOTO COMPONENT
+   ========================================================================== */
+.profile-photo-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Outer Spinning Dashed Border */
+.profile-photo-outer-ring {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 9999px;
+  border: 2px dashed rgba(37, 99, 235, 0.25);
+  animation: spin 30s linear infinite;
+}
+
+.dark .profile-photo-outer-ring {
+  border-color: rgba(6, 182, 212, 0.25);
+}
+
+/* Inner Reverse Spinning Gradient Border */
+.profile-photo-inner-ring {
+  position: absolute;
+  width: 92%;
+  height: 92%;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary), var(--color-accent));
+  padding: 3px;
+  animation: spin-back 20s linear infinite;
+  box-shadow: var(--card-shadow);
+}
+
+.profile-photo-inner-bg {
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  transition: background-color 0.4s ease;
+}
+
+.dark .profile-photo-inner-bg {
+  background-color: #020617; /* dark slate-950 */
+}
+
+/* Radial Backdrop Glow */
+.profile-photo-glow {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, rgba(139, 92, 246, 0.05) 70%, transparent 100%);
+  filter: blur(24px);
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  pointer-events: none;
+}
+
+.dark .profile-photo-glow {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.25) 0%, rgba(139, 92, 246, 0.08) 70%, transparent 100%);
+}
+
+/* Circular Image Container */
+.profile-photo-container {
+  position: absolute;
+  width: 82%;
+  height: 82%;
+  border-radius: 9999px;
+  overflow: hidden;
+  border: 4px solid #ffffff;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+  z-index: 10;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .profile-photo-container {
+  border-color: var(--bg-tertiary); /* slate-800 */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.profile-photo-container:hover {
+  transform: scale(1.03);
+}
+
+.profile-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==========================================================================
    ANIMATIONS & KEYFRAMES
    ========================================================================== */
 .animate-spin-slow {
