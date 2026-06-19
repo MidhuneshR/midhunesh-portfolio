@@ -181,6 +181,12 @@ a {
 .rounded-2xl { border-radius: 1rem; }
 .rounded-3xl { border-radius: 1.5rem; }
 .rounded-full { border-radius: 9999px; }
+
+/* Button Padding Utilities */
+.px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
+.py-2\.5 { padding-top: 0.625rem; padding-bottom: 0.625rem; }
+.px-7 { padding-left: 1.75rem; padding-right: 1.75rem; }
+.py-3\.5 { padding-top: 0.875rem; padding-bottom: 0.875rem; }
 .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
 .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
 .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
@@ -596,6 +602,27 @@ textarea.form-input ~ .form-label {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* GitHub Premium Button styling */
+.github-btn {
+  background-color: #1a1e22;
+  color: #ffffff !important;
+  border: 1px solid #1a1e22 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.github-btn:hover {
+  background-color: #24292e;
+  border-color: #24292e !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.dark .github-btn {
+  background-color: #24292e;
+  border-color: #383e44 !important;
+}
+.dark .github-btn:hover {
+  background-color: #2f363d;
+  border-color: #4f565e !important;
 }
 
 /* ==========================================================================
